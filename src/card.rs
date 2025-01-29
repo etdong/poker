@@ -88,4 +88,31 @@ impl fmt::Display for Suit {
         }
     }
 }
+
+impl<'a> Card<'a> {
+    pub fn new(r: &'a Rank, s: &'a Suit) -> Card<'a> {
+        return Card {
+            rank: r,
+            suit: s
+        }
+    }
+
+    pub fn rank(&self) -> &Rank {
+        return &self.rank;
+    }
+
+    pub fn suit(&self) -> &Suit {
+        return &self.suit;
+    }
+}
+
+impl<'a> fmt::Display for Card<'a> {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "┌─────┐\n\
+        │{}    │\n\
+        │  {}  │\n\
+        │    {}│\n\
+        └─────┘\n\
+        ", self.rank, self.suit, self.rank)
+    }
 }
